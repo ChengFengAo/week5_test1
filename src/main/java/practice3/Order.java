@@ -15,25 +15,25 @@ public class Order {
         this.tax = new BigDecimal(0.1);
     }
 
+    public List<BigDecimal> getDiscounts() {
+        return discounts;
+    }
+
+    public List<OrderLineItem> getOrderLineItemList() {
+        return orderLineItemList;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
     public BigDecimal calculate() {
-        BigDecimal subTotal = new BigDecimal(0);
-
-        // Total up line items
-        for (OrderLineItem lineItem : orderLineItemList) {
-            subTotal = subTotal.add(lineItem.getPrice());
-        }
-
-        // Subtract discounts
-        for (BigDecimal discount : discounts) {
-            subTotal = subTotal.subtract(discount);
-        }
-
-        // calculate tax
-        BigDecimal tax = subTotal.multiply(this.tax);
-
-        // calculate GrandTotal
-        BigDecimal grandTotal = subTotal.add(tax);
-
-        return grandTotal;
+      /*  PriceCaculator priceCaculator=new PriceCaculator();
+        priceCaculator.total(orderLineItemList);
+        priceCaculator.discount(discounts);
+        BigDecimal tax=priceCaculator.tax(this.tax);
+        BigDecimal grandTotal=priceCaculator.grandTotal(tax);
+        return grandTotal;*/
+      return new PriceCaculator(this).calculate();
     }
 }

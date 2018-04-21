@@ -1,7 +1,7 @@
 package practice3;
 
 import java.math.BigDecimal;
-public class OrderLineItem {
+public class OrderLineItem {      //订单行项目
     private BigDecimal price;
 
     public OrderLineItem(double price) {
